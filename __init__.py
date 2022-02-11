@@ -26,5 +26,3 @@ def receive_group_msg(ctx: GroupMsg):
 
     if data:
         S.image(data)
-    else:
-        S.text("格式错误或不支持的emoji")
