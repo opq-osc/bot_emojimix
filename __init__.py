@@ -12,7 +12,7 @@ except ImportError:
 
 @ignore_botself
 @on_regexp(r"^([\u200d-\U0001fab5]+)\+([\u200d-\U0001fab5]+)$")
-def receive_group_message(ctx: GroupMsg):
+def receive_group_msg(ctx: GroupMsg):
     emoji_1, emoji_2 = ctx._match[1], ctx._match[2]
 
     data = None
