@@ -1,18 +1,19 @@
 """emoji合成
 使用举例：发送 🥳+👑
+
+发送 emoji合成 获取帮助
 """
 from botoy import GroupMsg, S
-from botoy.decorators import ignore_botself, on_regexp
+from botoy.decorators import equal_content, ignore_botself, on_regexp
 
 try:
-    from .emojimix import mix_emoji
+    from .emojimix import help, mix_emoji
 except ImportError:
-    from emojimix import mix_emoji
+    from emojimix import help, mix_emoji
 
 
-@ignore_botself
 @on_regexp(r"^([\u200d-\U0001fab5]+)\+([\u200d-\U0001fab5]+)$")
-def receive_group_msg(ctx: GroupMsg):
+def process_emoji(ctx: GroupMsg):
     emoji_1, emoji_2 = ctx._match[1], ctx._match[2]
 
     data = None
@@ -26,3 +27,14 @@ def receive_group_msg(ctx: GroupMsg):
 
     if data:
         S.image(data)
+
+
+@equal_content('emoji合成')
+def process_help(_):
+    S.text(help())
+
+
+@ignore_botself
+def recieve_group_msg(ctx):
+    process_help(ctx)
+    process_emoji(ctx)

@@ -33,3 +33,12 @@ def mix_emoji(emoji_1: str, emoji_2: str) -> Optional[bytes]:
         return
     else:
         return resp.content
+
+
+def help() -> str:
+    chars = []
+    for code in emojis.keys():
+        items = [chr(int(i)) for i in code.split('-')]
+        chars.append(''.join(items))
+
+    return '支持的emoji有：' + ', '.join(chars)
