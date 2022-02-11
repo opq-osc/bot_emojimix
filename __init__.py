@@ -35,6 +35,6 @@ def process_help(_):
 
 
 @ignore_botself
-def recieve_group_msg(ctx):
+def receive_group_msg(ctx):
     process_help(ctx)
     process_emoji(ctx)
